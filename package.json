@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "pako": "^2.1.0"
+  }
+}
