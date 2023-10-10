@@ -1,7 +1,7 @@
-const apiKey = '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';
+const apiKey = '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';
 
-export function callOpenai() {
-  fetch('https://api.openai.com/v1/chat/completions', {
+export function callOpenai(messageArr) {
+  return fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -9,20 +9,21 @@ export function callOpenai() {
     },
     body: JSON.stringify({
       model: 'gpt-3.5-turbo',
-      messages: [
-        {
-          role: 'system',
-          content: 'Only answer with PlantUML code'
-        },
-        {
-          role: 'user',
-          content: 'Diagram for a simple shop'
-        }
-      ]
+      messages: messageArr
     })
   })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok ' + response.statusText);
+      }
+      return response.json();
+    })
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      throw error;
+    });
 }
 
