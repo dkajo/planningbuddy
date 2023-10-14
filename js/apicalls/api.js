@@ -1,4 +1,4 @@
-
+// Actual api call
 export function callOpenai(messageArr, apiKey) {
   return fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',

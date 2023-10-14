@@ -12,11 +12,23 @@ USER_INPUT_FORM.addEventListener("submit", () => processInput(event));
 function processInput(event) {
     event.preventDefault();
 
-    console.log("Processing input")
-
     // Retrieves user input
     let userApiKey = USER_API_KEY.value;
     let userInput = USER_PROMPT.value; 
+
+    // Log events in chat
+        // create a new div element
+        const newDiv = document.createElement("div");
+      
+        // and give it some content
+        const newContent = document.createTextNode(userInput);
+      
+        // add the text node to the newly created div
+        newDiv.appendChild(newContent);
+      
+        // add the newly created element and its content into the DOM
+        CHAT.appendChild(newDiv);
+    
 
     let messageArr = [
         {
@@ -29,6 +41,7 @@ function processInput(event) {
         }
     ];
 
+    // Calling OpenAI's api
     callOpenai(messageArr, userApiKey).then(data => {
         let apiResponse = data.choices[0].message.content
         console.log(apiResponse)
@@ -38,12 +51,5 @@ function processInput(event) {
         console.error('Error:', error);
     });
 }
-
-
-/* Sample UML Code
-Alice -> Bob: Hello Bob, how are you?
-Bob --> Alice: I'm good thanks, Alice!
-Alice -> Bob: Great to hear!
-*/
 
 
