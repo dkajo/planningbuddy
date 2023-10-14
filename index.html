@@ -17,15 +17,20 @@
         <h1>Planning Buddy</h1>
     </header>
     <main>
-        <div id="diagram"><img
-                src=""
-                alt="Generate a diagram">
+        <div id="diagram"><img src="" alt="Generate a diagram">
         </div>
         <aside id="chat">
             <p></p>
         </aside>
-        <textarea id="userprompt"></textarea>
-        <button id="sendbtn">Send</button>
+        <form action="javascript:void(0)" id="userinput">
+            <label for="apikey">API Key</label> <br>
+            <input type="text" id="apikey" placeholder="Enter your OpenAI api key" required> <br>
+            <br>
+            <label for="userprompt">Enter instructions for generating a diagram</label> <br>
+            <textarea id="userprompt" required></textarea> <br>
+            <input type="submit" value="Send">
+        </form>
+
     </main>
 
     <footer></footer>

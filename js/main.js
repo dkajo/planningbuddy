@@ -2,17 +2,21 @@ import { compress } from "./plantuml/encodeURL.js";
 import { callOpenai } from "./apicalls/api.js";
 
 const USER_PROMPT = document.querySelector("#userprompt");
-const SEND_BUTTON = document.querySelector("#sendbtn");
+const USER_INPUT_FORM = document.querySelector("#userinput")
 const DIAGRAM = document.querySelector("#diagram img");
 const CHAT = document.querySelector("#chat p")
+const USER_API_KEY = document.querySelector("#apikey");
 
-SEND_BUTTON.addEventListener("click", processInput);
+USER_INPUT_FORM.addEventListener("submit", () => processInput(event));
 
-function processInput() {
-    let userInput = USER_PROMPT.value; // Retrieves user input
-    //et src = compress(userInput); // Takes the userInput and compresses it in to a png url
+function processInput(event) {
+    event.preventDefault();
 
-    //DIAGRAM.src = src; // Updates the img tag with the new source
+    console.log("Processing input")
+
+    // Retrieves user input
+    let userApiKey = USER_API_KEY.value;
+    let userInput = USER_PROMPT.value; 
 
     let messageArr = [
         {
@@ -25,7 +29,7 @@ function processInput() {
         }
     ];
 
-    callOpenai(messageArr).then(data => {
+    callOpenai(messageArr, userApiKey).then(data => {
         let apiResponse = data.choices[0].message.content
         console.log(apiResponse)
         let src = compress(apiResponse)

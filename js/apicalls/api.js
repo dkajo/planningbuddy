@@ -1,6 +1,5 @@
-const apiKey = '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';
 
-export function callOpenai(messageArr) {
+export function callOpenai(messageArr, apiKey) {
   return fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
     headers: {
