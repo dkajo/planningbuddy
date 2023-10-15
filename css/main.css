@@ -1,0 +1,77 @@
+:root {
+    --blue: #485696;
+    --white: #E7E7E7;
+    --bright-orange: #F9C784;
+    --orange: #FC7A1E;
+    --dark-orange: #F24C00;
+}
+
+@font-face {
+    font-family: Alata;
+    src: url(fonts/Alata/Alata-Regular.ttf);
+}
+
+@font-face {
+    font-family: Alatsi;
+    src: url(fonts/Alatsi/Alatsi-Regular.ttf);
+}
+
+html {
+    font-size: 24px;
+}
+
+body {
+    background-color: var(--white);
+    
+}
+
+div.container {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+h1,
+h2 {
+    font-family: Alatsi;
+}
+
+h3,
+p,
+label {
+    font-family: Alata;
+}
+
+header {
+    border-bottom: var(--dark-orange) 2px solid;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 200%;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 3fr 1fr;
+}
+
+
+#diagram {
+    text-align: center;
+    padding: 1rem;
+}
+
+aside {
+    border: var(--dark-orange) 2px solid;
+    
+}
+
+form {
+    border: var(--dark-orange) 2px solid;
+    text-align: center;
+    grid-column: 1/3;
+}
