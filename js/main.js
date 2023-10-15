@@ -16,18 +16,8 @@ function processInput(event) {
     let userApiKey = USER_API_KEY.value;
     let userInput = USER_PROMPT.value; 
 
-    // Log events in chat
-        // create a new div element
-        const newDiv = document.createElement("div");
-      
-        // and give it some content
-        const newContent = document.createTextNode(userInput);
-      
-        // add the text node to the newly created div
-        newDiv.appendChild(newContent);
-      
-        // add the newly created element and its content into the DOM
-        CHAT.appendChild(newDiv);
+    updateChat(userInput);
+    updateChat("System: Processing")
     
 
     let messageArr = [
@@ -44,12 +34,19 @@ function processInput(event) {
     // Calling OpenAI's api
     callOpenai(messageArr, userApiKey).then(data => {
         let apiResponse = data.choices[0].message.content
-        console.log(apiResponse)
+        updateChat("System: " + apiResponse);
         let src = compress(apiResponse)
         DIAGRAM.src = src;
     }).catch(error => {
         console.error('Error:', error);
+        updateChat("Something went wrong")
     });
 }
 
-
+// Logs all the events in the chat.
+function updateChat (message) {
+    const newDiv = document.createElement("div");
+    const newContent = document.createTextNode(message);
+    newDiv.appendChild(newContent);
+    CHAT.appendChild(newDiv);
+}
